@@ -42,7 +42,7 @@ app.post('/users', (request, response) => {
 
   users.push(newUser);
 
-  return response.status(201).json({ newUser });
+  return response.status(201).json(newUser);
 });
 
 app.get('/todos', checksExistsUserAccount, (request, response) => {
@@ -87,7 +87,7 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
   todo.title = title;
   todo.deadline = new Date(deadline);
 
-  return response.status(200).send();
+  return response.status(200).send(todo);
 
 });
 
@@ -104,7 +104,7 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
 
   todo.done = true;
 
-  return response.status(200).send();
+  return response.status(200).send(todo);
 
 });
 
@@ -121,7 +121,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   user.todos.splice(todo, 1);
 
-  return response.status(200).send();
+  return response.status(204).send();
 
 });
 
